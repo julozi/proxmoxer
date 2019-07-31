@@ -29,6 +29,9 @@ class ProxmoxResourceBase(object):
         if item.startswith("_"):
             raise AttributeError(item)
 
+        # turn underscore into dash to support resource with dash in name
+        item = item.replace('_', '-')
+
         kwargs = self._store.copy()
         kwargs['base_url'] = self.url_join(self._store["base_url"], item)
 
